@@ -18,12 +18,12 @@
     z-index: 1;
     width: 430px;
     /* Đặt chiều rộng card */
-    height: 560px;
+    height: 600px;
+    line-height: 21px;
 
     /* Đặt chiều cao card */
     /* Đảm bảo card nổi lên trên bản đồ */
 }
-
 
 
 ul {
@@ -216,10 +216,44 @@ select {
     }
 }
 
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #f9faf3;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+nav a:hover {
+    background-color: #ddd;
+}
+
+
+
+nav ul li.login {
+    float: right;
+    /* Other styles... */
+}
+
+nav {
+    display: fixed;
+    grid-template-columns: 1fr auto;
+    background-image: linear-gradient(to right, #51e6e9, #08575f);
+    max-height: 50px;
+    /* Adjust colors as needed */
+}
 
 .symbol-image {
-    width: 50px;
-    /* Điều chỉnh kích thước ký hiệu */
-    height: 50px;
-    /* Điều chỉnh kích thước ký hiệu */
+    width: 40px;
+    height: 40px;
 }

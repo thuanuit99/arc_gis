@@ -90,19 +90,26 @@ searchBtn.onclick = async function (event) {
         const trafficJamData = dataRouteByDateChoosen[0]['records'].filter((point) => {
             return point['Vận tốc'] <= 10 && point['Trạng thái xe'] == 'Xe chạy bình thường' && point['Vận tốc'] > 0
         })
-
+        const trafficBusyData = dataRouteByDateChoosen[0]['records'].filter((point) => {
+            return point['Vận tốc'] <= 20 && point['Vận tốc'] >= 10 && point['Trạng thái xe'] == 'Xe chạy bình thường' && point['Vận tốc'] > 0
+        })
         const trafficJamPoint = trafficJamData.map((point) => {
             return [parseFloat(point.Long), parseFloat(point.Lat)];
 
         })
+        const trafficBusyPoint = trafficBusyData.map((point) => {
+            return [parseFloat(point.Long), parseFloat(point.Lat)];
 
-        console.log(trafficJamPoint)
+        })
+
         renderContent(dataRouteByDateChoosen[0]['records'])
         updateMapWithPolyline(view, polylineCoordinates)
         updateMapWithStartPoint(view, polylineCoordinates, dataRouteByDateChoosen[0]['records'])
         updateMapWithEndPoint(view, polylineCoordinates, dataRouteByDateChoosen[0]['records'])
         showRecentLocation(view, polylineCoordinates, currentIndex, dataRouteByDateChoosen[0]['records'], vehicleInfor)
+        updateBusyPoint(view, trafficBusyPoint)
         updateTrafficJamPoint(view, trafficJamPoint)
+
         nextButton.onclick = function () {
             currentIndex++;
             renderContent(dataRouteByDateChoosen[0]['records'], currentIndex);
@@ -318,6 +325,40 @@ function updateTrafficJamPoint(view, trafficJamPoint) {
             const trafficJamSymbol = new SimpleMarkerSymbol({
                 style: "circle",
                 color: "red",
+                size: "8px",
+                outline: { // Loại bỏ viền
+                    color: null, // Không có màu viền
+                    width: 0 // Kích thước viền là 0
+                }
+            });
+
+
+
+            const startpointGraphic = new Graphic({
+                geometry: trafficJamPoint,
+                symbol: trafficJamSymbol,
+            });
+
+
+            view.graphics.add(startpointGraphic);
+        })
+
+
+    });
+
+}
+
+function updateBusyPoint(view, trafficJamPoint) {
+
+    require(["esri/Graphic", "esri/geometry/Point", "esri/symbols/SimpleMarkerSymbol"], function (Graphic, Point, SimpleMarkerSymbol) {
+        trafficJamPoint.forEach((point) => {
+            let trafficJamPoint = new Point({
+                longitude: point[0],
+                latitude: point[1]
+            });
+            const trafficJamSymbol = new SimpleMarkerSymbol({
+                style: "circle",
+                color: "yellow",
                 size: "8px",
                 outline: { // Loại bỏ viền
                     color: null, // Không có màu viền

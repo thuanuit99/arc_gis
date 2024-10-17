@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date Picker Integration</title>
+    <title>Quản lý giao thông</title>
 
     <!-- Bootstrap 4 CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -25,18 +25,32 @@
     <script src="https://js.arcgis.com/4.28/"></script>
     <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="trangchu.css">
+    <style>
+
+    </style>
 </head>
 
-<body>
-    <div class="card">
 
+<body>
+    <nav>
+        <ul>
+            <li><a href="TrangChu.html">Trang chủ</a></li>
+            <li><a href="qltaixe.html">Quản lý xe - tài xế</a></li>
+            <li><a href="index.html">Quản lý giao thông</a></li>
+            <li><a href="qlchohang.html">Quản lý giao nhận hàng</a></li>
+            <li class="login"><a href="login.html">Đăng Xuất</a></li>
+        </ul>
+    </nav>
+
+    <div class="card" style="top:50px;position:fix;">
         <div class="card-header bg-gray">
             <h5>Theo dõi xe</h5>
         </div>
         <div class="card-body">
 
             <form>
-                <div class="row">
+                <div class="row" style="margin-bottom: 10px;">
 
                     <input type="text" class="form-control" id="datePicker" placeholder="Select a date" required>
                     <select name="xe" id="xe" required>
@@ -59,7 +73,7 @@
 
             </form>
 
-            <div id="content" style="height: 380px">
+            <div id="content" style="line-height: px;">
                 <div class="d-none" style="padding-top: 30px" id="loading">
                     <button class="btn btn-primary" disabled>
                         <span class="spinner-border spinner-border-sm"></span>
@@ -69,7 +83,7 @@
 
 
             </div>
-            <div style="float:right">
+            <div style="float:right;position: absolute; bottom: 16px; right: 0;">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chugiai">Chú
                     giải</button>
                 <button type="button" class="btn btn-primary" id="detail" data-toggle="modal"
@@ -77,16 +91,20 @@
                 <button type="button" class="btn btn-primary" id="previous">Previous</button>
                 <button type="button" class="btn btn-primary" id="next">Next</button>
 
+
             </div>
+
         </div>
-    </div>
-
-
-
-    <div id="viewDiv">
-
 
     </div>
+
+
+
+    <div id="viewDiv" style="top:50px" ;>
+
+
+    </div>
+
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
