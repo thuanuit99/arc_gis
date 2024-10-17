@@ -90,19 +90,26 @@ searchBtn.onclick = async function (event) {
         const trafficJamData = dataRouteByDateChoosen[0]['records'].filter((point) => {
             return point['Vận tốc'] <= 10 && point['Trạng thái xe'] == 'Xe chạy bình thường' && point['Vận tốc'] > 0
         })
-
+        const trafficBusyData = dataRouteByDateChoosen[0]['records'].filter((point) => {
+            return point['Vận tốc'] <= 20 && point['Vận tốc'] >= 10 && point['Trạng thái xe'] == 'Xe chạy bình thường' && point['Vận tốc'] > 0
+        })
         const trafficJamPoint = trafficJamData.map((point) => {
             return [parseFloat(point.Long), parseFloat(point.Lat)];
 
         })
+        const trafficBusyPoint = trafficBusyData.map((point) => {
+            return [parseFloat(point.Long), parseFloat(point.Lat)];
 
-        console.log(trafficJamPoint)
+        })
+
         renderContent(dataRouteByDateChoosen[0]['records'])
         updateMapWithPolyline(view, polylineCoordinates)
         updateMapWithStartPoint(view, polylineCoordinates, dataRouteByDateChoosen[0]['records'])
         updateMapWithEndPoint(view, polylineCoordinates, dataRouteByDateChoosen[0]['records'])
         showRecentLocation(view, polylineCoordinates, currentIndex, dataRouteByDateChoosen[0]['records'], vehicleInfor)
+        updateBusyPoint(view, trafficBusyPoint)
         updateTrafficJamPoint(view, trafficJamPoint)
+
         nextButton.onclick = function () {
             currentIndex++;
             renderContent(dataRouteByDateChoosen[0]['records'], currentIndex);
@@ -236,7 +243,7 @@ function updateMapWithEndPoint(view, pointCoordinates, data) {
 }
 function showRecentLocation(view, pointCoordinates, currentIndex, data, vehicleInfor) {
 
-    require(["esri/Graphic", "esri/geometry/Point", "esri/symbols/SimpleMarkerSymbol"], function (Graphic, Point, SimpleMarkerSymbol) {
+    require(["esri/Graphic", "esri/geometry/Point", "esri/symbols/PictureMarkerSymbol"], function (Graphic, Point, PictureMarkerSymbol) {
         const startaddress = data.filter((item) => {
             return item['Lat'] == pointCoordinates[currentIndex][1];
         })
@@ -256,34 +263,33 @@ function showRecentLocation(view, pointCoordinates, currentIndex, data, vehicleI
             longitude: pointCoordinates[currentIndex][0],
             latitude: pointCoordinates[currentIndex][1]
         });
-        const pointSymbol = new SimpleMarkerSymbol({
-            style: "circle",
-            color: "orange",
-            size: "20px",
-            angle: angle
+        const pointSymbol = new PictureMarkerSymbol({
+            url: "truck.png", // URL to the house icon image
+            width: "50px",
+            height: "50px"
         });
 
         const startpopupTemplate = {
             title: `Thông tin chi tiết`,
             content: `
-        <div class="container text-body">
-            <div class="row mb-2">
-                <div class="col-6 font-weight-bold">Biển số xe:</div>
-                <div class="col-6">${vehicleInfor['name']}</div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-6 font-weight-bold">Trọng tải xe:</div>
-                <div class="col-6">${vehicleInfor['weight']}</div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-6 font-weight-bold">Tọa độ:</div>
-                <div class="col-6">${startPoint.latitude}, ${startPoint.longitude}</div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-6 font-weight-bold">Địa chỉ:</div>
-                <div class="col-6">${startaddress[0]['Địa chỉ']}</div>
-            </div>
-        </div>
+    <div class="container text-body">
+    <div class="row mb-2">
+    <div class="col-6 font-weight-bold">Biển số xe:</div>
+    <div class="col-6">${vehicleInfor['name']}</div>
+    </div>
+    <div class="row mb-2">
+    <div class="col-6 font-weight-bold">Trọng tải xe:</div>
+    <div class="col-6">${vehicleInfor['weight']}</div>
+    </div>
+    <div class="row mb-2">
+    <div class="col-6 font-weight-bold">Tọa độ:</div>
+    <div class="col-6">${startPoint.latitude}, ${startPoint.longitude}</div>
+    </div>
+    <div class="row mb-2">
+    <div class="col-6 font-weight-bold">Địa chỉ:</div>
+    <div class="col-6">${startaddress[0]['Địa chỉ']}</div>
+    </div>
+    </div>
     `
 
         };
@@ -307,6 +313,9 @@ function showRecentLocation(view, pointCoordinates, currentIndex, data, vehicleI
 
 
 
+
+
+
 function updateTrafficJamPoint(view, trafficJamPoint) {
 
     require(["esri/Graphic", "esri/geometry/Point", "esri/symbols/SimpleMarkerSymbol"], function (Graphic, Point, SimpleMarkerSymbol) {
@@ -318,6 +327,40 @@ function updateTrafficJamPoint(view, trafficJamPoint) {
             const trafficJamSymbol = new SimpleMarkerSymbol({
                 style: "circle",
                 color: "red",
+                size: "8px",
+                outline: { // Loại bỏ viền
+                    color: null, // Không có màu viền
+                    width: 0 // Kích thước viền là 0
+                }
+            });
+
+
+
+            const startpointGraphic = new Graphic({
+                geometry: trafficJamPoint,
+                symbol: trafficJamSymbol,
+            });
+
+
+            view.graphics.add(startpointGraphic);
+        })
+
+
+    });
+
+}
+
+function updateBusyPoint(view, trafficJamPoint) {
+
+    require(["esri/Graphic", "esri/geometry/Point", "esri/symbols/SimpleMarkerSymbol"], function (Graphic, Point, SimpleMarkerSymbol) {
+        trafficJamPoint.forEach((point) => {
+            let trafficJamPoint = new Point({
+                longitude: point[0],
+                latitude: point[1]
+            });
+            const trafficJamSymbol = new SimpleMarkerSymbol({
+                style: "circle",
+                color: "orange",
                 size: "8px",
                 outline: { // Loại bỏ viền
                     color: null, // Không có màu viền

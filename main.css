@@ -1,29 +1,46 @@
-#viewDiv {
-    height: 100vh;
+viewDiv {
+    height: 100%;
+    /* Subtract navbar height (adjust as needed) */
     width: 100%;
-    position: fixed;
+    position: relative;
     /* Định vị card tuyệt đối */
-    top: 0px;
+    top: 50px;
     /* Đặt card cách cạnh trên */
     left: 0px;
 }
+h1,h2,h3, h4, h5 {
+    text-align: center;
+    /* Căn giữa cho thẻ h2 */
+    margin-bottom: 20px;
+    /* Khoảng cách dưới thẻ h2 */
+}
+
 
 .card {
-    position: fixed;
+    position: relative;
     /* Định vị card tuyệt đối */
     top: 0px;
     /* Đặt card cách cạnh trên */
     left: 0px;
     /* Đặt card cách cạnh trái */
     z-index: 1;
-    width: 430px;
+    width: 400px;
     /* Đặt chiều rộng card */
-    height: 560px;
+    height: 760px;
 
     /* Đặt chiều cao card */
     /* Đảm bảo card nổi lên trên bản đồ */
 }
 
+.map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Place map behind other elements */
+}
 
 
 ul {
@@ -47,18 +64,53 @@ li {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
-    width: 200px;
+    width: 50px;
     height: 35px;
     /* Đặt các phần tử con căn giữa theo chiều dọc */
 }
 
+
+
+.table tbody tr {
+    margin: 0px 0;
+    /* Điều chỉnh giá trị margin theo ý muốn */
+}
+
+.table td {
+    line-height: 1.2;
+    /* Điều chỉnh giá trị line-height theo ý muốn */
+}
+
+form {
+    display: flex;
+    /* Use flexbox for horizontal layout */
+    justify-content: space-between;
+    /* Create space between elements */
+    align-items: center;
+    /* Vertically center elements */
+}
+
+form label {
+    margin-right: 100px;
+    border-radius: 10px;
+
+    /* Add spacing between label and input */
+}
+
+.form-group {
+    /* Adjust width as needed */
+    width: 150px;
+    height: 100%;
+}
+
+x
 
 /* Tùy chỉnh font chữ của input */
 .form-control {
     padding: 10px;
     border: 1.5px solid black;
     height: 100%;
-    width: 200px;
+    width: 100px;
     margin-right: 5px;
     /* Đặt chiều cao 100% để vừa với khung */
 }
@@ -66,6 +118,9 @@ li {
 button,
 select {
     margin-right: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
 }
 
 /* Hiệu ứng khi hover vào input */
@@ -111,9 +166,15 @@ select {
 
 /* Đặt chiều rộng cho ô input */
 .form-group {
-    width: 50%;
+    width: 1000%;
 }
 
+.modal-body table {
+    width: 200px;
+    height: 30px;
+
+    /* Adjust the width as needed */
+}
 
 .lds-spinner,
 .lds-spinner div,
@@ -218,8 +279,66 @@ select {
 
 
 .symbol-image {
-    width: 50px;
+    width: 30px;
     /* Điều chỉnh kích thước ký hiệu */
-    height: 50px;
+    height: 30px;
     /* Điều chỉnh kích thước ký hiệu */
+}
+
+
+/* Điều chỉnh kích thước thanh nav*/
+
+
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #f9faf3;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+nav a:hover {
+    background-color: #ddd;
+}
+
+
+
+nav ul li.login {
+    float: right;
+    /* Other styles... */
+}
+
+nav {
+    display: fixed;
+    grid-template-columns: 1fr auto;
+    grid-gap: 20px;
+    padding: 10px;
+    background-image: linear-gradient(to right, #51e6e9, #08575f);
+    /* Adjust colors as needed */
+}
+
+card-header {
+    display: flex;
+    text-align: center;
+    grid-template-columns: 1fr auto;
+    grid-gap: 10px;
+    padding: 10px;
+    background-image: linear-gradient(to right, #e6a821, #08575f);
+    /* Adjust colors as needed */
+}
+
+h5 a:hover {
+    color: #000;
+    /* Change the color to black */
 }
