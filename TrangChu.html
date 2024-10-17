@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ Công Ty TNHH Vận Tải A</title>
+    <title>Công Ty TNHH Vận Tải Đường Bộ Phú Cường A</title>
+
     <link rel="stylesheet" href="trangchu.css">
 
     <style>
@@ -51,43 +52,24 @@
     <nav>
         <ul>
             <li><a href="TrangChu.html">Trang chủ</a></li>
-            <li><a href="qltaixe.html" class="ft-login">Quản lý tài xế</a></li>
-            <li><a href="qlgiaothong.html" class="ft-login">Quản lý giao thông</a></li>
-            <li><a href="qlchohang.html" class="ft-login">Quản lý giao nhận hàng</a></li>
-            <li class="login"><a href="login.html">Đăng nhập</a></li>
+            <li><a href="qltaixe.html">Quản lý tài xế</a></li>
+            <li><a href="index.html">Quản lý giao thông</a></li>
+            <li><a href="qlchohang.html">Quản lý giao nhận hàng</a></li>
+            <li class="login"><a href="login.html">Đăng Xuất</a></li>
         </ul>
     </nav>
     <!-- Thêm thanh diêu khien -->
 </head>
-<script>
-    let isUserLoggedIn = false; 
 
-    document.querySelectorAll('.ft-login').forEach(link => {
-            link.addEventListener('click', function(event) {
-                if (!isUserLoggedIn) { 
-                    event.preventDefault(); 
-                    alert("Bạn cần đăng nhập để tiếp tục.");
-                    window.location.href = "/login.html"; 
-                }
-            });
-        });
-</script>
 <body>
-    
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc;">
-        <div class="header-title" style="flex: 1; text-align: center;">
-        <h1>Công Ty TNHH Vận Tải A</h1>
-        </div>
-        <div class="header-update" style="flex: 1; text-align: right;">
+    <header>
+        <h1>Công Ty TNHH Vận Tải Đường Bộ Phú Cường A</h1>
         <p>Ngày cập nhật gần nhất: 14/11/2013</p>
-        </div>
-        <div class="header-contact" style="flex: 1; text-align: right;">
         <address>
             <p>83 Đường Phan Trung, Kp. 2, P. Tân Mai, Tp. Biên Hòa, Đồng Nai</p>
             <p>(0251) 3825031</p>
             <p>phucuonga@vnn.vn</p>
         </address>
-        </div>
 
     </header>
 
@@ -109,8 +91,9 @@
             <div class="text-container">
 
                 <h2>Giới thiệu công ty</h2>
-                <p>Công ty Vận tải A là công ty chuyên cung cấp dịch vụ vận tải bằng đường bộ. Công
-                    ty từ lúc
+                <p>Công ty Vận tải Đường bộ Phú Cường A là công ty chuyên cung cấp dịch vụ vận tải bằng
+                    đường bộ. Công
+                <p>Công ty Vận tải A là công ty chuyên cung cấp dịch vụ vận tải bằng đường bộ. Công ty từ lúc
                     có 1 đầu xe, đến nay đã có trên 40 xe các loại từ 1 tấn đến 15 tấn. Đội ngũ lái xe có tay nghề,
                     trong đó có
                     nhiều lái xe là Đảng viên thuộc Chi Bộ công ty.</p>
@@ -150,7 +133,10 @@
                 <section>
                     <h3>Hồ sơ công ty</h3>
                     <ul>
+                        <li>Tên công ty: CÔNG TY TNHH VẬN TẢI ĐƯỜNG BỘ PHÚ CƯỜNG A</li>
+
                         <li>Tên công ty: CÔNG TY TNHH VẬN TẢI A</li>
+
                         <li>Loại hình kinh doanh: Kinh Doanh Dịch Vụ</li>
                     </ul>
                 </section>
